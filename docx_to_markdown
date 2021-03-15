@@ -3,3 +3,8 @@ do
     echo ${f%%.*}
     pandoc -t gfm --extract-media="media/${f%%.*}" -o "${f%%.*}".md "$f" || echo "$f"
 done
+ 
+# note the use of `%%.` to remove docx suffix https://linuxhint.com/trim_string_bash/
+# adapted from https://tewarid.github.io/2017/12/04/word-to-markdown-using-pandoc.html
+# fallback command to ensure that all jobs are completed https://stackoverflow.com/questions/6961389/exception-handling-in-shell-scripting
+# specify media folder to avoid pandoc overwriting figures that it names as figure_1 https://pandoc.org/MANUAL.html
